@@ -1,6 +1,7 @@
 """
 Welcome to Forrest Runner source code! Project is programmed in python using pygame (along with other libraries).
-This project will form part of my OCR A-Level computer science NEA project. See supporting coursework writeup documents for more info.
+This project will form part of my OCR A-Level computer science NEA project. See supporting coursework writeup documents
+for more info.
 
 Written by: Dominic H
 Candidate number: *REDACTED*
@@ -12,11 +13,12 @@ import pygame
 from sys import exit
 
 # setup pygame and create window for game to run in
-pygame.init()
-DS1 = pygame.display.set_mode((1920, 1080))
-pygame.display.set_caption('Forrest Runner')  # sets window title
+pygame.init()  # initialize all pygame modules to avoid having initialize all separately
+DS1 = pygame.display.set_mode((1920, 1080))  # sets the display size for pygame to render to (in this case 1920*1080)
+pygame.display.set_caption('Forrest Runner')  # sets window title show to user within host OS
 
-clock = pygame.time.Clock()  # controls timing for the entire game
+clock = pygame.time.Clock()  # Creates a clock variable that is constantly updated during execution. Used to control
+# all time dependant functions within the game.
 
 while True:
     # allow user to exit from the game from the OS
@@ -25,5 +27,5 @@ while True:
             pygame.quit()
             exit()
 
-    pygame.display.update()  # draw elements and refresh the display
-    clock.tick(60)  # sets framerate timer to 60fps
+    pygame.display.update()  # draw elements and refresh the display on every clock cycle
+    clock.tick(60)  # controls how fast the game clock should run (in this case 60 times per second)
