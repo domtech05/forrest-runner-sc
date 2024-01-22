@@ -33,7 +33,6 @@ def exitFunc():
 def mainMenu():
     titleFont = pygame.font.Font("CabinSketch-Bold.ttf", 60)  # define a bold font to be used for the main title
 
-
     while True:
         # allow user to exit from the game from the OS
         exitFunc()
