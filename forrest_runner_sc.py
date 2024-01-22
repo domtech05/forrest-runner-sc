@@ -29,3 +29,14 @@ while True:
 
     pygame.display.update()  # draw elements and refresh the display on every clock cycle
     clock.tick(60)  # controls how fast the game clock should run (in this case 60 times per second)
+
+
+fontRegular = pygame.font.Font("CabinSketch-Regular.ttf", 20)
+fontBold = pygame.font.Font("CabinSketch-Bold.ttf", 20)
+
+
+def drawText(text, font, color, surface, x, y):
+    textobj = font.render(text, 1, color)
+    textrect = textobj.get_rect()
+    textrect.topleft = (x, y)
+    surface.blit(textobj, textrect)
