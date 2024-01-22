@@ -14,29 +14,26 @@ from sys import exit
 
 # setup pygame and create window for game to run in
 pygame.init()  # initialize all pygame modules to avoid having initialize all separately
-DS1 = pygame.display.set_mode((1920, 1080))  # sets the display size for pygame to render to (in this case 1920*1080)
+screen = pygame.display.set_mode((1920, 1080))  # sets the display size for pygame to render to (in this case 1920*1080)
 pygame.display.set_caption('Forrest Runner')  # sets window title show to user within host OS
 
 clock = pygame.time.Clock()  # Creates a clock variable that is constantly updated during execution. Used to control
 # all time dependant functions within the game.
 
-while True:
+
+# FONT AND TEXT SETUP
+fontRegular = pygame.font.Font("CabinSketch-Regular.ttf", 20)  # define a regular size font to be used through the game
+fontBold = pygame.font.Font("CabinSketch-Bold.ttf", 20)  # define a bold font to be used for titles
+
+while True:  # LOOP FOR WHOLE GAME
     # allow user to exit from the game from the OS
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             pygame.quit()
             exit()
 
+    screen.fill((255, 255, 255))  # TEMP
+    screen.blit(fontRegular.render("John Hubbard", True, (0, 0, 255)), (40, 140))  # TEMP
+
     pygame.display.update()  # draw elements and refresh the display on every clock cycle
     clock.tick(60)  # controls how fast the game clock should run (in this case 60 times per second)
-
-
-fontRegular = pygame.font.Font("CabinSketch-Regular.ttf", 20)
-fontBold = pygame.font.Font("CabinSketch-Bold.ttf", 20)
-
-
-def drawText(text, font, color, surface, x, y):
-    textobj = font.render(text, 1, color)
-    textrect = textobj.get_rect()
-    textrect.topleft = (x, y)
-    surface.blit(textobj, textrect)
