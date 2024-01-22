@@ -33,12 +33,13 @@ def exitFunc():
 def mainMenu():
     titleFont = pygame.font.Font("CabinSketch-Bold.ttf", 60)  # define a bold font to be used for the main title
 
+
     while True:
         # allow user to exit from the game from the OS
         exitFunc()
 
         screen.fill((255, 255, 255))  # TEMP
-        screen.blit(titleFont.render("John Hubbard", True, (0, 0, 255)), (40, 140))  # TEMP
+        screen.blit(titleFont.render("Forrest Runner", True, (0, 0, 255)), (40, 140))  # TEMP
 
         pygame.display.update()  # draw elements and refresh the display on every clock cycle
         clock.tick(60)  # controls how fast the game clock should run (in this case 60 times per second)
