@@ -16,19 +16,14 @@ from sys import exit
 pygame.init()  # initialize all pygame modules to avoid having initialize all separately
 width = 1920
 height = 1080
-screen = pygame.display.set_mode((width, height))  # sets the display size for pygame to render to (in this case 1920*1080)
+screen = pygame.display.set_mode((width, height))  # sets the display size for pygame to render to (in this case # 1920*1080)
 pygame.display.set_caption('Forrest Runner')  # sets window title show to user within host OS
 
 clock = pygame.time.Clock()  # Creates a clock variable that is constantly updated during execution. Used to control
 # all time dependant functions within the game.
 
 
-# FONT AND TEXT SETUP
-fontRegular = pygame.font.Font("CabinSketch-Regular.ttf", 20)  # define a regular size font to be used through the game
-fontBold = pygame.font.Font("CabinSketch-Bold.ttf", 20)  # define a bold font to be used for titles
-
-
-# Create function that will allow user to exit game from host OS. Must be called in every while loop!!
+# Create function that will allow user to exit game from host OS.
 def exitFunc():
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
