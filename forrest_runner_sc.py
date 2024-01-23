@@ -14,7 +14,9 @@ from sys import exit
 
 # setup pygame and create window for game to run in
 pygame.init()  # initialize all pygame modules to avoid having initialize all separately
-screen = pygame.display.set_mode((1920, 1080))  # sets the display size for pygame to render to (in this case 1920*1080)
+width = 1920
+height = 1080
+screen = pygame.display.set_mode((width, height))  # sets the display size for pygame to render to (in this case 1920*1080)
 pygame.display.set_caption('Forrest Runner')  # sets window title show to user within host OS
 
 clock = pygame.time.Clock()  # Creates a clock variable that is constantly updated during execution. Used to control
@@ -35,12 +37,13 @@ def exitFunc():
 
 
 def mainMenu():
+    titleFont = pygame.font.Font("CabinSketch-Bold.ttf", 100)
     while True:
         # allow user to exit from the game from the OS
         exitFunc()
 
         screen.fill((255, 255, 255))  # TEMP
-        screen.blit(fontRegular.render("John Hubbard", True, (0, 0, 255)), (40, 140))  # TEMP
+        screen.blit(titleFont.render("Forest runner", True, (0, 0, 0)), ((width / 2), (height / 2)))  # TEMP
 
         pygame.display.update()  # draw elements and refresh the display on every clock cycle
         clock.tick(60)  # controls how fast the game clock should run (in this case 60 times per second)
