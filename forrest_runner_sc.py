@@ -45,10 +45,11 @@ def mainMenu():
 
     # Function to draw buttons to the screen
     def drawButton(text, x, y, bWidth, bHeight):
-        pygame.draw.rect(screen, (255, 255, 255), (x, y, bWidth, bHeight))
-        pygame.draw.rect(screen, (0, 0, 0), (x, y, bWidth, bHeight), 2)
-
+        buttonImage = pygame.image.load("ASSETS/button.png")
+        buttonImage = pygame.transform.scale(buttonImage, (bWidth, bHeight))
         buttonFont = pygame.font.Font("CabinSketch-Regular.ttf", 70)
+
+        screen.blit(buttonImage, (x, y))
 
         # Render text
         #screen.blit(buttonFont.render(text, True, ))
