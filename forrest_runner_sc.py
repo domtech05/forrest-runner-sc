@@ -52,7 +52,7 @@ def mainMenu():
         screen.blit(buttonImage, (x, y))
 
         # Render text
-        #screen.blit(buttonFont.render(text, True, ))
+        screen.blit(buttonFont.render(text, True, ))
 
 
     # Main menu loop
