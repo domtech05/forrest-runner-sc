@@ -44,15 +44,25 @@ def mainMenu():
     # screen
 
     # Function to draw buttons to the screen
-    def drawButton(text, x, y, bWidth, bHeight):
-        buttonImage = pygame.image.load("ASSETS/button.png")
-        buttonImage = pygame.transform.scale(buttonImage, (bWidth, bHeight))
-        buttonFont = pygame.font.Font("CabinSketch-Regular.ttf", 70)
+    class Button:
+        def __init__(self, text, x, y, bWidth, bHeight):
+            self.text = text
+            self.x = x
+            self.y = y
+            self.width = bWidth
+            self.height = bHeight
 
-        screen.blit(buttonImage, (x, y))
+            self.buttonImage = pygame.image.load("ASSETS/button.png")
+            self.buttonImage = pygame.transform.scale(self.buttonImage, (self.width, self.height))
+            self.buttonFont = pygame.font.Font("CabinSketch-Regular.ttf", 45)
 
-        # Render text
-        screen.blit(buttonFont.render(text, True, ))
+        def draw(self, screen):
+            screen.blit(self.buttonImage, (self.x, self.y))
+
+            # Render text centered on the button
+            text_surface = self.buttonFont.render(self.text, True, (0, 0, 0))
+            text_rect = text_surface.get_rect(center=(self.x + self.width // 2, self.y + self.height // 2))
+            screen.blit(text_surface, text_rect)
 
 
     # Main menu loop
@@ -69,7 +79,8 @@ def mainMenu():
 
         button_width, button_height = 200, 50
         button_start_y = height // 2
-        drawButton("Button 1", (width - button_width) // 2, button_start_y, button_width, button_height)
+        button = Button("Click Me", ((width // 2) - (button_width // 2)), button_start_y - 10, button_width, button_height)
+        button.draw(screen)
 
         pygame.display.update()  # draw elements and refresh the display on every clock cycle
         clock.tick(60)  # controls how fast the game clock should run (in this case 60 times per second)
