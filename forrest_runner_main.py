@@ -44,7 +44,7 @@ def mainMenu():
     # screen
 
     # Function to draw buttons to the screen
-    class Button:
+    class menuButton:
         def __init__(self, text, x, y, bWidth, bHeight):
             self.text = text
             self.x = x
@@ -79,7 +79,7 @@ def mainMenu():
 
         button_width, button_height = 200, 50
         button_start_y = height // 2
-        button = Button("Click Me", ((width // 2) - (button_width // 2)), button_start_y - 10, button_width, button_height)
+        button = menuButton("Click Me", ((width // 2) - (button_width // 2)), button_start_y - 10, button_width, button_height)
         button.draw(screen)
 
         pygame.display.update()  # draw elements and refresh the display on every clock cycle
