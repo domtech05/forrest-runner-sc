@@ -70,8 +70,8 @@ def mainMenu():
     titleFont = pygame.font.Font("FONTS/CabinSketch-Bold.ttf", 100)  # Load font for main title
     taglineFont = pygame.font.Font("FONTS/CabinSketch-Regular.ttf", 50)  # Load font for title taglines
 
-    background_image = pygame.image.load("ASSETS/background.jpg")  # Load background image from assets folder
-    background_image = pygame.transform.scale(background_image, (width, height))  # scale background image to fill
+    backgroundImage = pygame.image.load("ASSETS/background.jpg")  # Load background image from assets folder
+    backgroundImage = pygame.transform.scale(backgroundImage, (width, height))  # scale background image to fill
     # screen
 
 
@@ -98,7 +98,7 @@ def mainMenu():
         # allow user to exit from the game from the OS
         exitFunc()
 
-        screen.blit(background_image, (0, 0))  # Draw background image to screen
+        screen.blit(backgroundImage, (0, 0))  # Draw background image to screen
 
 
 
@@ -118,7 +118,7 @@ def mainMenu():
 
         menuButton2 = menuButton("Settings", ((width - menuButtonWidth) // 2),
                                  ((height // 2) + menuButtonHeight + menuButtonSpacing) - 75, menuButtonWidth,
-                                 menuButtonHeight,None)
+                                 menuButtonHeight, settingsMenu)
         menuButton2.draw(screen)
 
         menuButton3 = menuButton("Exit", ((width - menuButtonWidth) // 2),
@@ -138,14 +138,14 @@ def settingsMenu():
             self.is_open = False
 
         def draw(self):
-            pygame.draw.rect(screen, white, self.rect, 2)  # Draw the dropdown box
+            pygame.draw.rect(screen, (255,255,255), self.rect, 2)  # Draw the dropdown box
 
             if self.is_open:
                 # Draw the dropdown options
                 for i, option in enumerate(self.options):
                     option_rect = pygame.Rect(self.rect.x, self.rect.y + self.rect.height * (i + 1), self.rect.width,
                                               self.rect.height)
-                    pygame.draw.rect(screen, white, option_rect, 2)
+                    pygame.draw.rect(screen, (255,255,255), option_rect, 2)
                     text_surface = font.render(option, True, black)
                     screen.blit(text_surface, (option_rect.x + 10, option_rect.y + 10))
 
@@ -155,6 +155,22 @@ def settingsMenu():
                     self.is_open = not self.is_open
                 else:
                     self.is_open = False
+
+    dropdown_options = ["Option 1", "Option 2", "Option 3"]
+    dropdown_menu = DropdownMenu(dropdown_options, 50, 50, 150, 30)
+
+    print("hello")
+
+    while True:
+        exitFunc()
+
+        # Draw everything
+        screen.fill((255, 255, 255))
+        dropdown_menu.draw()
+
+
+    pygame.display.update()
+    clock.tick(60)
 
 
 mainMenu()
