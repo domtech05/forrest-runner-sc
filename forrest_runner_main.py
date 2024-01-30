@@ -52,7 +52,8 @@ class Button: # Create superclass to create buttons within the game
 
         # Import and display image (path passed in)
         self.buttonImage = pygame.image.load(imagePath)
-        self.buttonImage = pygame.transform.scale(self.buttonImage, (self.width, self.height)) # scale button image to fit size
+        self.buttonImage = pygame.transform.scale(self.buttonImage, (self.width, self.height)) # scale button
+        # image to fit size
 
         # Create a rect attribute for collision detection
         self.rect = self.buttonImage.get_rect(topleft=(self.x, self.y))
