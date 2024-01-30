@@ -48,14 +48,21 @@ class Button: # Create superclass to create buttons within the game
         self.width = bWidth
         self.height = bHeight
         self.buttonFont = font
+        self.clicked = False
 
         # Import and display image (path passed in)
         self.buttonImage = pygame.image.load(imagePath)
         self.buttonImage = pygame.transform.scale(self.buttonImage, (self.width, self.height)) # scale button image to fit size
 
+        # Create a rect attribute for collision detection
+        self.rect = self.buttonImage.get_rect(topleft=(self.x, self.y))
+
 
 
     def draw(self, screen): # create function to draw button to screen
+        # Update the rect attribute to reflect the current position
+        self.rect.topleft = (self.x, self.y)
+
         screen.blit(self.buttonImage, (self.x, self.y)) # show image on screen
 
         # Render text centered on the button
@@ -77,20 +84,34 @@ def mainMenu():
 
 
     class menuButton(Button):
-        def __init__(self, text, x, y, width, height, action, font=None):
-
-            buttonFont = pygame.font.Font("FONTS/CabinSketch-Regular.ttf", 60)  # create button font
-
-            # Call the superclass constructor with all the necessary parameters
+        def __init__(self, text, x, y, width, height, action):
+            buttonFont = pygame.font.Font("FONTS/CabinSketch-Regular.ttf", 60)
             super().__init__(text, x, y, width, height, buttonFont, "ASSETS/button.png")
+            self.action = action
+            self.clicked = False
 
-            mouse = pygame.mouse.get_pos()  # get the mouse position on screen and assign it to a variable
-            click = pygame.mouse.get_pressed()  # get the click status of the mouse and assign it to a variable
-            if x < mouse[0] < x + width and y < mouse[1] < y + height:  # detect if the mouse falls within boundary of
-                # the button
-                if click[0] == 1 and action is not None:  # detect if mouse is clicked
-                    action()  # run action defined in function parameter
+        def checkClick(self):
+            mouse = pygame.mouse.get_pos()
+            click = pygame.mouse.get_pressed()
 
+            if self.rect.collidepoint(mouse):  # Use the rect attribute from the superclass
+                if click[0] == 1 and self.action is not None:
+                    self.clicked = True
+                    self.action()
+
+
+    menuButtonSpacing = 30  # define the space between each menu button
+    menuButtonHeight, menuButtonWidth = 75, 350  # define the size for each button
+    menuButton1 = menuButton("Start", ((width - menuButtonWidth) // 2), (height // 2) - 75, menuButtonWidth,
+                             menuButtonHeight, None)
+
+    menuButton2 = menuButton("Settings", ((width - menuButtonWidth) // 2),
+                             ((height // 2) + menuButtonHeight + menuButtonSpacing) - 75, menuButtonWidth,
+                             menuButtonHeight, settingsMenu)
+
+    menuButton3 = menuButton("Exit", ((width - menuButtonWidth) // 2),
+                             ((height // 2) + 2 * (menuButtonHeight + menuButtonSpacing)) - 75, menuButtonWidth,
+                             menuButtonHeight, exitButton)
 
 
     # Main menu loop
@@ -100,31 +121,23 @@ def mainMenu():
 
         screen.blit(backgroundImage, (0, 0))  # Draw background image to screen
 
-
-
         screen.blit(taglineFont.render("Welcome to", True, (0, 0, 0)),
                     (width // 2 - taglineFont.size("Welcome to")[0] // 2, 290))  # Add tagline to top of title
         screen.blit(titleFont.render("Forest runner", True, (0, 0, 0)),
                     (width // 2 - titleFont.size("Forest runner")[0] // 2, 320))  # Draw main title to screen
 
 
+        menuButton1.checkClick()
+        menuButton2.checkClick()
+        menuButton3.checkClick()
+        if menuButton1.clicked or menuButton2.clicked or menuButton3.clicked:
+            break
 
-        menuButtonSpacing = 30  # define the space between each menu button
-        menuButtonHeight, menuButtonWidth = 75, 350  # define the size for each button
 
-        menuButton1 = menuButton("Start", ((width - menuButtonWidth) // 2), (height // 2) - 75, menuButtonWidth,
-                                 menuButtonHeight, None)
         menuButton1.draw(screen)
-
-        menuButton2 = menuButton("Settings", ((width - menuButtonWidth) // 2),
-                                 ((height // 2) + menuButtonHeight + menuButtonSpacing) - 75, menuButtonWidth,
-                                 menuButtonHeight, settingsMenu)
         menuButton2.draw(screen)
-
-        menuButton3 = menuButton("Exit", ((width - menuButtonWidth) // 2),
-                                 ((height // 2) + 2 * (menuButtonHeight + menuButtonSpacing)) - 75, menuButtonWidth,
-                                 menuButtonHeight, exitButton)
         menuButton3.draw(screen)
+
 
         pygame.display.update()  # draw elements and refresh the display on every clock cycle
         clock.tick(60)  # controls how fast the game clock should run (in this case 60 times per second)
@@ -169,8 +182,8 @@ def settingsMenu():
         dropdown_menu.draw()
 
 
-    pygame.display.update()
-    clock.tick(60)
+        pygame.display.update()
+        clock.tick(60)
 
 
 mainMenu()
