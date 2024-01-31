@@ -16,8 +16,8 @@ from sys import exit
 pygame.init()  # initialize all pygame modules to avoid having initialize all separately
 width = 1920
 height = 1080
-screen = pygame.display.set_mode(
-    (width, height))  # sets the display size for pygame to render to (in this case # 1920*1080)
+screen = pygame.display.set_mode((width, height))  # sets the display size for pygame to render to (in this case
+                                                    # 1920*1080)
 pygame.display.set_caption('Forrest Runner')  # sets window title show to user within host OS
 
 clock = pygame.time.Clock()  # Creates a clock variable that is constantly updated during execution. Used to control
@@ -53,7 +53,7 @@ class Button: # Create superclass to create buttons within the game
         # Import and display image (path passed in)
         self.buttonImage = pygame.image.load(imagePath)
         self.buttonImage = pygame.transform.scale(self.buttonImage, (self.width, self.height)) # scale button
-        # image to fit size
+        # image to fit button size
 
         # Create a rect attribute for collision detection
         self.rect = self.buttonImage.get_rect(topleft=(self.x, self.y))
@@ -67,10 +67,10 @@ class Button: # Create superclass to create buttons within the game
         screen.blit(self.buttonImage, (self.x, self.y)) # show image on screen
 
         # Render text centered on the button
-        text_surface = self.buttonFont.render(self.text, True, (0, 0, 0))
+        textSurface = self.buttonFont.render(self.text, True, (0, 0, 0))
         # centre text to the button image (using the width and height defined)
-        text_rect = text_surface.get_rect(center=(self.x + self.width // 2, self.y + self.height // 2))
-        screen.blit(text_surface, text_rect)
+        textRect = textSurface.get_rect(center=(self.x + self.width // 2, self.y + self.height // 2))
+        screen.blit(textSurface, textRect)
 
 
 
