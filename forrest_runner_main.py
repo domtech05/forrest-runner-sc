@@ -103,6 +103,7 @@ def mainMenu():
 
     menuButtonSpacing = 30  # define the space between each menu button
     menuButtonHeight, menuButtonWidth = 75, 350  # define the size for each button
+    #Use the button class to show the three buttons on screen
     menuButton1 = menuButton("Start", ((width - menuButtonWidth) // 2), (height // 2) - 75, menuButtonWidth,
                              menuButtonHeight, None)
 
