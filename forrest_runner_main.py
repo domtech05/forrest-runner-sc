@@ -41,7 +41,7 @@ def exitButton():  # Create function for use in exit buttons. Allows user to exi
 
 class Button: # Create superclass to create buttons within the game
     def __init__(self, text, x, y, bWidth, bHeight, font, imagePath):
-        #assign parameters to the buttons (passed in)
+        # assign parameters to the buttons (passed in)
         self.text = text
         self.x = x
         self.y = y
@@ -103,7 +103,7 @@ def mainMenu():
 
     menuButtonSpacing = 30  # define the space between each menu button
     menuButtonHeight, menuButtonWidth = 75, 350  # define the size for each button
-    #Use the button class to show the three buttons on screen
+    # Use the button class to show the three buttons on screen
     menuButton1 = menuButton("Start", ((width - menuButtonWidth) // 2), (height // 2) - 75, menuButtonWidth,
                              menuButtonHeight, None)
 
