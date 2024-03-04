@@ -145,36 +145,6 @@ def mainMenu():
         clock.tick(60)  # controls how fast the game clock should run (in this case 60 times per second)
 
 
-def settingsMenu():
-    class DropdownMenu:
-        def __init__(self, options, x, y, width, height):
-            self.options = options
-            self.rect = pygame.Rect(x, y, width, height)
-            self.is_open = False
-
-        def draw(self):
-            pygame.draw.rect(screen, (255,255,255), self.rect, 2)  # Draw the dropdown box
-
-            if self.is_open:
-                # Draw the dropdown options
-                for i, option in enumerate(self.options):
-                    option_rect = pygame.Rect(self.rect.x, self.rect.y + self.rect.height * (i + 1), self.rect.width,
-                                              self.rect.height)
-                    pygame.draw.rect(screen, (255,255,255), option_rect, 2)
-                    text_surface = font.render(option, True, black)
-                    screen.blit(text_surface, (option_rect.x + 10, option_rect.y + 10))
-
-        def handle_event(self, event):
-            if event.type == pygame.MOUSEBUTTONDOWN and event.button == 1:
-                if self.rect.collidepoint(event.pos):
-                    self.is_open = not self.is_open
-                else:
-                    self.is_open = False
-
-    dropdown_options = ["Option 1", "Option 2", "Option 3"]
-    dropdown_menu = DropdownMenu(dropdown_options, 50, 50, 150, 30)
-
-    print("hello")
 
     while True:
         exitFunc()
