@@ -109,7 +109,7 @@ def mainMenu():
 
     menuButton2 = menuButton("Settings", ((width - menuButtonWidth) // 2),
                              ((height // 2) + menuButtonHeight + menuButtonSpacing) - 75, menuButtonWidth,
-                             menuButtonHeight, settingsMenu)
+                             menuButtonHeight, None)
 
     menuButton3 = menuButton("Exit", ((width - menuButtonWidth) // 2),
                              ((height // 2) + 2 * (menuButtonHeight + menuButtonSpacing)) - 75, menuButtonWidth,
@@ -146,16 +146,7 @@ def mainMenu():
 
 
 
-    while True:
-        exitFunc()
 
-        # Draw everything
-        screen.fill((255, 255, 255))
-        dropdown_menu.draw()
-
-
-        pygame.display.update()
-        clock.tick(60)
 
 
 mainMenu()
