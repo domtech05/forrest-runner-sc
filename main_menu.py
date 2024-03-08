@@ -14,10 +14,10 @@ from sys import exit
 
 # setup pygame and create window for game to run in
 pygame.init()  # initialize all pygame modules to avoid having initialize all separately
-width = 1920
-height = 1080
-screen = pygame.display.set_mode((width, height))  # sets the display size for pygame to render to (in this case
-                                                    # 1920*1080)
+screenWidth = 1920
+screenHeight = 1080
+screen = pygame.display.set_mode((screenWidth, screenHeight))  # sets the display size for pygame to render to (in this case
+# 1920*1080)
 pygame.display.set_caption('Forrest Runner')  # sets window title show to user within host OS
 
 clock = pygame.time.Clock()  # Creates a clock variable that is constantly updated during execution. Used to control
@@ -39,7 +39,7 @@ def exitButton():  # Create function for use in exit buttons. Allows user to exi
     exit()
 
 
-class Button: # Create superclass to create buttons within the game
+class Button:  # Create superclass to create buttons within the game
     def __init__(self, text, x, y, bWidth, bHeight, font, imagePath):
         # assign parameters to the buttons (passed in)
         self.text = text
@@ -52,19 +52,17 @@ class Button: # Create superclass to create buttons within the game
 
         # Import and display image (path passed in)
         self.buttonImage = pygame.image.load(imagePath)
-        self.buttonImage = pygame.transform.scale(self.buttonImage, (self.width, self.height)) # scale button
+        self.buttonImage = pygame.transform.scale(self.buttonImage, (self.width, self.height))  # scale button
         # image to fit button size
 
         # Create a rect attribute for collision detection
         self.rect = self.buttonImage.get_rect(topleft=(self.x, self.y))
 
-
-
-    def draw(self, screen): # create function to draw button to screen
+    def draw(self, screen):  # create function to draw button to screen
         # Update the rect attribute to reflect the current position
         self.rect.topleft = (self.x, self.y)
 
-        screen.blit(self.buttonImage, (self.x, self.y)) # show image on screen
+        screen.blit(self.buttonImage, (self.x, self.y))  # show image on screen
 
         # Render text centered on the button
         textSurface = self.buttonFont.render(self.text, True, (0, 0, 0))
@@ -73,16 +71,14 @@ class Button: # Create superclass to create buttons within the game
         screen.blit(textSurface, textRect)
 
 
-
 def mainMenu():
     titleFont = pygame.font.Font("FONTS/CabinSketch-Bold.ttf", 100)  # Load font for main title
     taglineFont = pygame.font.Font("FONTS/CabinSketch-Regular.ttf", 50)  # Load font for title taglines
 
     backgroundImage = pygame.image.load("ASSETS/background.jpg")  # Load background image from assets folder
-    backgroundImage = pygame.transform.scale(backgroundImage, (width, height))  # scale background image to fill
+    backgroundImage = pygame.transform.scale(backgroundImage, (screenWidth, screenHeight))  # scale background image to fill
+
     # screen
-
-
 
     class menuButton(Button):
         def __init__(self, text, x, y, width, height, action):
@@ -100,21 +96,19 @@ def mainMenu():
                     self.clicked = True
                     self.action()
 
-
     menuButtonSpacing = 30  # define the space between each menu button
     menuButtonHeight, menuButtonWidth = 75, 350  # define the size for each button
     # Use the button class to show the three buttons on screen
-    menuButton1 = menuButton("Start", ((width - menuButtonWidth) // 2), (height // 2) - 75, menuButtonWidth,
+    menuButton1 = menuButton("Start", ((screenWidth - menuButtonWidth) // 2), (screenHeight // 2) - 75, menuButtonWidth,
                              menuButtonHeight, None)
 
-    menuButton2 = menuButton("Settings", ((width - menuButtonWidth) // 2),
-                             ((height // 2) + menuButtonHeight + menuButtonSpacing) - 75, menuButtonWidth,
+    menuButton2 = menuButton("Settings", ((screenWidth - menuButtonWidth) // 2),
+                             ((screenHeight // 2) + menuButtonHeight + menuButtonSpacing) - 75, menuButtonWidth,
                              menuButtonHeight, None)
 
-    menuButton3 = menuButton("Exit", ((width - menuButtonWidth) // 2),
-                             ((height // 2) + 2 * (menuButtonHeight + menuButtonSpacing)) - 75, menuButtonWidth,
+    menuButton3 = menuButton("Exit", ((screenWidth - menuButtonWidth) // 2),
+                             ((screenHeight // 2) + 2 * (menuButtonHeight + menuButtonSpacing)) - 75, menuButtonWidth,
                              menuButtonHeight, exitButton)
-
 
     # Main menu loop
     while True:
@@ -124,10 +118,9 @@ def mainMenu():
         screen.blit(backgroundImage, (0, 0))  # Draw background image to screen
 
         screen.blit(taglineFont.render("Welcome to", True, (0, 0, 0)),
-                    (width // 2 - taglineFont.size("Welcome to")[0] // 2, 290))  # Add tagline to top of title
+                    (screenWidth // 2 - taglineFont.size("Welcome to")[0] // 2, 290))  # Add tagline to top of title
         screen.blit(titleFont.render("Forest runner", True, (0, 0, 0)),
-                    (width // 2 - titleFont.size("Forest runner")[0] // 2, 320))  # Draw main title to screen
-
+                    (screenWidth // 2 - titleFont.size("Forest runner")[0] // 2, 320))  # Draw main title to screen
 
         menuButton1.checkClick()
         menuButton2.checkClick()
@@ -135,18 +128,12 @@ def mainMenu():
         if menuButton1.clicked or menuButton2.clicked or menuButton3.clicked:
             break
 
-
         menuButton1.draw(screen)
         menuButton2.draw(screen)
         menuButton3.draw(screen)
 
-
         pygame.display.update()  # draw elements and refresh the display on every clock cycle
         clock.tick(60)  # controls how fast the game clock should run (in this case 60 times per second)
-
-
-
-
 
 
 mainMenu()
