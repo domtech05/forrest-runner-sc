@@ -135,5 +135,5 @@ def mainMenu():
         pygame.display.update()  # draw elements and refresh the display on every clock cycle
         clock.tick(60)  # controls how fast the game clock should run (in this case 60 times per second)
 
-#TEST
+
 mainMenu()
