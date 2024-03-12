@@ -102,7 +102,7 @@ def mainMenu():
     menuButtonHeight, menuButtonWidth = 75, 350  # define the size for each button
     # Use the button class to show the three buttons on screen
     menuButton1 = menuButton("Start", ((screenWidth - menuButtonWidth) // 2), (screenHeight // 2) - 75, menuButtonWidth,
-                             menuButtonHeight, action=lambda: level1Class(screen).run())
+                             menuButtonHeight, action=startLevel1)
 
     menuButton2 = menuButton("Settings", ((screenWidth - menuButtonWidth) // 2),
                              ((screenHeight // 2) + menuButtonHeight + menuButtonSpacing) - 75, menuButtonWidth,
@@ -137,5 +137,10 @@ def mainMenu():
         pygame.display.update()  # draw elements and refresh the display on every clock cycle
         clock.tick(60)  # controls how fast the game clock should run (in this case 60 times per second)
 
+def startLevel1():
+    level = level1Class(screen)
+    level.run()
+    # Return to main menu after level ends
+    mainMenu()
 
 mainMenu()

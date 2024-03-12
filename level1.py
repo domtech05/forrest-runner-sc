@@ -15,6 +15,5 @@ class level1Class:
                 if event.type == pygame.QUIT:
                     self.running = False
 
-
             pygame.display.update()
             self.clock.tick()
