@@ -11,6 +11,7 @@ Centre number: *REDACTED*
 # import necessary libraries used in program
 import pygame
 from sys import exit
+from level1 import level1Class
 
 # setup pygame and create window for game to run in
 pygame.init()  # initialize all pygame modules to avoid having initialize all separately
@@ -18,6 +19,7 @@ screenWidth = 1920
 screenHeight = 1080
 screen = pygame.display.set_mode((screenWidth, screenHeight))  # sets the display size for pygame to render to (in this case
 # 1920*1080)
+level1 = level1Class(screen)
 pygame.display.set_caption('Forrest Runner')  # sets window title show to user within host OS
 
 clock = pygame.time.Clock()  # Creates a clock variable that is constantly updated during execution. Used to control
@@ -75,7 +77,7 @@ def mainMenu():
     titleFont = pygame.font.Font("FONTS/CabinSketch-Bold.ttf", 100)  # Load font for main title
     taglineFont = pygame.font.Font("FONTS/CabinSketch-Regular.ttf", 50)  # Load font for title taglines
 
-    backgroundImage = pygame.image.load("ASSETS/background.jpg")  # Load background image from assets folder
+    backgroundImage = pygame.image.load("ASSETS/Images/background.jpg")  # Load background image from assets folder
     backgroundImage = pygame.transform.scale(backgroundImage, (screenWidth, screenHeight))  # scale background image to fill
 
     # screen
@@ -100,7 +102,7 @@ def mainMenu():
     menuButtonHeight, menuButtonWidth = 75, 350  # define the size for each button
     # Use the button class to show the three buttons on screen
     menuButton1 = menuButton("Start", ((screenWidth - menuButtonWidth) // 2), (screenHeight // 2) - 75, menuButtonWidth,
-                             menuButtonHeight, None)
+                             menuButtonHeight, action=lambda: level1Class(screen).run())
 
     menuButton2 = menuButton("Settings", ((screenWidth - menuButtonWidth) // 2),
                              ((screenHeight // 2) + menuButtonHeight + menuButtonSpacing) - 75, menuButtonWidth,
