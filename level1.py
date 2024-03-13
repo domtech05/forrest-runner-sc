@@ -11,7 +11,6 @@ class level1Class:
         while self.running:
 
 
-
             for event in pygame.event.get():
                 if event.type == pygame.QUIT:
                     self.running = False
