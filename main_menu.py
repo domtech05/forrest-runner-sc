@@ -128,8 +128,9 @@ def mainMenu():
         menuButton2.checkClick()
         menuButton3.checkClick()
         if menuButton1.clicked or menuButton2.clicked or menuButton3.clicked:
-            break
+            break # breaks out of main menu while loop if a button is pressed
 
+        # draw 3 buttons to screen
         menuButton1.draw(screen)
         menuButton2.draw(screen)
         menuButton3.draw(screen)
