@@ -9,9 +9,9 @@ class physicsEntity:
         self.velocity = [0,0]
 
     def update(self, movement=(0, 0)):
-        frameMovement = (movement[0] + self.velocity[0], movement[1] + self.velocity[1]) # calculate total movement for the frame
+        frameMovement = (movement[0] + self.velocity[0], movement[1] + self.velocity[1])  # calculate total movement for the frame
         self.pos[0] += frameMovement[0]  # Update X position based on frame movement variable defined above
         self.pos[1] += frameMovement[1]  # same as above but for Y coordinate
 
     def render(self, screen):
-        screen.blit(self.game.assets['player'], )
+        screen.blit(self.game.assets['player'], self.pos)
