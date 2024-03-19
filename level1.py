@@ -16,6 +16,7 @@ class level1Class:
         self.running = True  # set running state to true
         while self.running:  # level 1 while loop
             self.player.update((self.movement[1] - self.movement[0], 0))
+            self.player.render(self.screen)
 
             for event in pygame.event.get():  # allow user to quit game using OS commands
                 if event.type == pygame.QUIT:
