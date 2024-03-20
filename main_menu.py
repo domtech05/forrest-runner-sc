@@ -14,16 +14,16 @@ from sys import exit
 from level1 import level1Class
 
 # setup pygame and create window for game to run in
-pygame.init()  # initialize all pygame modules to avoid having initialize all separately
+pygame.init()  # initialize all pygame modules to avoid having to initialize all separately
 screenWidth = 1920
 screenHeight = 1080
 screen = pygame.display.set_mode((screenWidth, screenHeight))  # sets the display size for pygame to render to (in this case
 # 1920*1080)
-level1 = level1Class(screen)
 pygame.display.set_caption('Forrest Runner')  # sets window title show to user within host OS
 
 clock = pygame.time.Clock()  # Creates a clock variable that is constantly updated during execution. Used to control
 
+level1 = level1Class(screen)
 
 # all time dependant functions within the game.
 

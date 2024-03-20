@@ -17,7 +17,7 @@ class level1Class:
         }
 
     def run(self):  # method to run level 1
-        self.running = True  # set running state to true
+        self.running = True  # set running state to
         while self.running:  # level 1 while loop
             self.player.update((self.movement[1] - self.movement[0], 0))
             self.player.render(self.screen)
@@ -26,6 +26,7 @@ class level1Class:
                 if event.type == pygame.QUIT:
                     self.running = False
                     pygame.quit()
+                    exit()
 
                 # if loops to detect and use keyboard input to control movement
                 if event.type == pygame.KEYDOWN:
