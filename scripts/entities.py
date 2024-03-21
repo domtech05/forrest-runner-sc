@@ -14,4 +14,5 @@ class physicsEntity:
         self.pos[1] += frameMovement[1]  # same as above but for Y coordinate
 
     def render(self, screen):
-        screen.blit(self.game.assets['player'], self.pos)
+        scaledCharacter = pygame.transform.scale(self.game.assets['player'], self.size)
+        screen.blit(scaledCharacter, self.pos)

@@ -1,6 +1,6 @@
 import pygame
 from scripts.entities import physicsEntity
-from scripts.utils import load_image
+from scripts.utils import loadImage
 
 
 # create class to run level 1
@@ -10,10 +10,10 @@ class level1Class:
         self.screen = screen
         self.clock = pygame.time.Clock()
         self.running = False
-        self.player = physicsEntity(self, 'player', (50, 50), (8, 15))
+        self.player = physicsEntity(self, 'player', (50, 50), (70, 70))
         self.movement = [False, False]
         self.assets = {
-            'player': load_image('entities/character-idle.png')
+            'player': loadImage('entities/character-idle.png')
         }
 
     def run(self):  # method to run level 1

@@ -1,6 +1,6 @@
 import pygame
 
 basePath = 'ASSETS/Images/'
-def load_image(path):
+def loadImage(path):
     img = pygame.image.load(basePath + path)
     return img
