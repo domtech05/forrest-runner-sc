@@ -13,7 +13,7 @@ class level1Class:
         self.player = physicsEntity(self, 'player', (50, 50), (70, 70))
         self.movement = [False, False]
         self.assets = {
-            'player': loadImage('entities/character-idle.png')
+            'player': loadImage('entities/character-idle.png')  # import player image using function from utils.py
         }
 
     def run(self):  # method to run level 1
