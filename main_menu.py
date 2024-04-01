@@ -84,7 +84,7 @@ def mainMenu():
 
     class menuButton(Button):
         def __init__(self, text, x, y, width, height, action):
-            buttonFont = pygame.font.Font("FONTS/CabinSketch-Regular.ttf", 60)
+            buttonFont = pygame.font.Font("FONTS/Pangolin-Regular.ttf", 55)
             super().__init__(text, x, y, width, height, buttonFont, "ASSETS/button.png")
             self.action = action
             self.clicked = False
