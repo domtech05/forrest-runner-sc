@@ -1,6 +1,7 @@
 import pygame
 from scripts.entities import physicsEntity
-from scripts.utils import loadImage
+from scripts.utils import loadImage, bulkImageLoad
+from scripts.tilemap1 import tilemap
 
 
 # create class to run level 1
@@ -13,12 +14,21 @@ class level1Class:
         self.player = physicsEntity(self, 'player', (50, 50), (70, 70))
         self.movement = [False, False]
         self.assets = {
-            'player': loadImage('entities/character-idle.png')  # import player image using function from utils.py
+            'decor': bulkImageLoad('tiles/decor'),
+            'grass': bulkImageLoad('tiles/grass'),
+            'largeDecor': bulkImageLoad('tiles/largeDecor'),
+            'stone': bulkImageLoad('tiles/stone'),
+            'player': loadImage('entities/character-idle.png')  # import all images needed for the level to be rendered
         }
+        self.tilemap = tilemap(self, tileSize=16)
 
     def run(self):  # method to run level 1
         self.running = True  # set running state to
         while self.running:  # level 1 while loop
+            self.screen.fill((14, 219, 248))
+
+            self.tilemap.render(self.screen)
+
             self.player.update((self.movement[1] - self.movement[0], 0))
             self.player.render(self.screen)
 
