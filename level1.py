@@ -29,7 +29,7 @@ class level1Class:
 
             self.tilemap.render(self.screen)
 
-            self.player.update((self.movement[1] - self.movement[0], 0))
+            self.player.update(self.tilemap, (self.movement[1] - self.movement[0], 0))
             self.player.render(self.screen)
 
             for event in pygame.event.get():  # allow user to quit game using OS commands
