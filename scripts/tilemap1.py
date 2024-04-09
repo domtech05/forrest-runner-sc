@@ -31,7 +31,7 @@ class tilemap:  # create class for tilemaps
         rects = []  # tiles to return
         for tile in self.tilesAround(pos):  # check all tiles within set radius from character as set using above function
             if tile['type'] in physicsTiles:  # check given tiles against physicsTiles dictionary
-                rects.append(pygame.Rect(tile['pos'][0] * self.tileSize, tile['pos'][1] * self.tileSize, self.tileSize))
+                rects.append(pygame.Rect(tile['pos'][0] * self.tileSize, tile['pos'][1] * self.tileSize, self.tileSize, self.tileSize))
                 # create rects from all physics-enabled tiles
         return rects
 
