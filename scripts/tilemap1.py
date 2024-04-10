@@ -1,6 +1,6 @@
 import pygame
 
-neighborOffsets = [(-1, 0), (-1, -1), (0, -1), (1, -1), (1, 0), (1,0), (-1, 1), (0, 1), (1, 1)]  # offsets to get 9 tiles surrounding and including current tile
+neighborOffsets = [(-1, 0), (-1, -1), (0, -1), (1, -1), (1, 0), (0, 0), (-1, 1), (0, 1), (1, 1)]  # offsets to get 9 tiles surrounding and including current tile
 physicsTiles = {'grass', 'stone'}
 
 
@@ -44,3 +44,5 @@ class tilemap:  # create class for tilemaps
             tile = self.tilemap[location]
             screen.blit(self.game.assets[tile['type']][tile['variant']], (tile['pos'][0] * self.tileSize, tile['pos'][1] * self.tileSize))
             # render the on grid tiles
+
+        print()

@@ -25,7 +25,7 @@ class physicsEntity:
         for rect in tilemap.physicsRectsAround(self.pos):
             if entityRect.colliderect(rect):
                 if frameMovement[0] > 0:
-                    self.pos[0] = rect.left - self.size[0]
+                    self.pos[0] = rect.left
                     self.collisions['right'] = True
                     self.velocity[1] = 0
                 if frameMovement[0] < 0:
@@ -39,22 +39,14 @@ class physicsEntity:
         for rect in tilemap.physicsRectsAround(self.pos):
             if entityRect.colliderect(rect):
                 if frameMovement[1] > 0:
-                    self.pos[1] = rect.top
+                    self.pos[1] = rect.top - self.size[1]  # Adjust position based on bottom of the entity
                     self.collisions['down'] = True
-                if frameMovement[1] < 0:
-                    self.pos[1] = rect.bottom
+                elif frameMovement[1] < 0:
+                    self.pos[1] = rect.bottom  # Adjust position based on top of the entity
                     self.collisions['up'] = True
+                self.velocity[1] = 0  # Reset vertical velocity
+
                 self.pos[1] = entityRect.y
-
-        # Update position based on velocity
-        self.pos[0] += self.velocity[0]
-        self.pos[1] += self.velocity[1]
-
-        # Reset velocity after collision
-        if self.collisions['down'] or self.collisions['up']:
-            self.velocity[1] = 0
-        if self.collisions['left'] or self.collisions['right']:
-            self.velocity[0] = 0
 
         # noinspection PyTypeChecker
         self.velocity[1] = min(5, self.velocity[1] + 0.1)  # take the lower of two numbers and apply it to velocity.
@@ -64,5 +56,4 @@ class physicsEntity:
             self.velocity[1] = 0
 
     def render(self, screen):
-        scaledCharacter = pygame.transform.scale(self.game.assets['player'], self.size)
-        screen.blit(scaledCharacter, self.pos)
+        screen.blit(self.game.assets['player'], self.pos)
