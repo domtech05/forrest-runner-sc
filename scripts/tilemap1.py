@@ -40,9 +40,8 @@ class tilemap:  # create class for tilemaps
         for tile in self.offgridTiles:
             screen.blit(self.game.assets[tile['type']][tile['variant']], tile['pos'])  # render the offgrid tiles
 
+
         for location in self.tilemap:
             tile = self.tilemap[location]
             screen.blit(self.game.assets[tile['type']][tile['variant']], (tile['pos'][0] * self.tileSize, tile['pos'][1] * self.tileSize))
             # render the on grid tiles
-
-        print()

@@ -11,7 +11,7 @@ class level1Class:
         self.screen = screen
         self.clock = pygame.time.Clock()
         self.running = False
-        self.player = physicsEntity(self, 'player', (50, 50), (8,15))
+        self.player = physicsEntity(self, 'player', (50, 50), (19,24))
         self.movement = [False, False]
         self.assets = {
             'decor': bulkImageLoad('tiles/decor'),
