@@ -32,7 +32,6 @@ class physicsEntity:
                 if frameMovement[0] < 0:
                     self.pos[0] = rect.right
                     self.collisions['left'] = True
-                self.pos[0] = entityRect.x
 
         # HANDLE VERTICAL MOVEMENT
         self.pos[1] += frameMovement[1]
@@ -40,13 +39,12 @@ class physicsEntity:
         for rect in tilemap.physicsRectsAround(self.pos):
             if entityRect.colliderect(rect):
                 if frameMovement[1] > 0:
-                    self.pos[1] = rect.top - self.size[1]  # Adjust position based on bottom of the entity
+                    self.pos[1] = rect.top - self.size[1] # Adjust position based on bottom of the entity
                     self.collisions['down'] = True
                 elif frameMovement[1] < 0:
-                    self.pos[1] = rect.bottom  # Adjust position based on top of the entity
+                    self.pos[1] = rect.bottom # Adjust position based on top of the entity
                     self.collisions['up'] = True
                 self.velocity[1] = 0  # Reset vertical velocity
-                self.pos[1] = entityRect.y
 
         # noinspection PyTypeChecker
         self.velocity[1] = min(5, self.velocity[1] + 0.1)  # take the lower of two numbers and apply it to velocity.
@@ -56,5 +54,6 @@ class physicsEntity:
             self.velocity[1] = 0
 
     def render(self, screen):
+        pygame.draw.rect(screen, (255, 0, 0), (self.rect()))
         scaledCharacter = pygame.transform.scale(self.game.assets['player'], self.size)
         screen.blit(scaledCharacter, self.pos)
