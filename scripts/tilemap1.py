@@ -5,7 +5,7 @@ physicsTiles = {'grass', 'stone'}
 
 
 class tilemap:  # create class for tilemaps
-    def __init__(self, game, tileSize=16):  # initialise class and all variables needed within class
+    def __init__(self, game, tileSize):  # initialise class and all variables needed within class
         self.game = game
         self.tileSize = tileSize
         self.tilemap = {}

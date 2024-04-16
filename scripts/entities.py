@@ -10,18 +10,19 @@ class physicsEntity:
         self.pos = list(pos)
         self.size = size
         self.velocity = [0, 0]
+        self.collisions = {'up': False, 'down': False, 'right': False, 'left': False}
 
     def rect(self):
         rect = pygame.Rect(self.pos[0], self.pos[1], self.size[0], self.size[1])  # create rect around player to allow collisions
         return rect
 
     def update(self, tilemap, movement=(0, 0)):
-        self.collisions = {'up': False, 'down': False, 'right': False, 'left': False}
+        
 
         frameMovement = (movement[0] + self.velocity[0], movement[1] + self.velocity[1])
 
         # HANDLE HORIZONTAL MOVEMENT
-        self.pos[0] += frameMovement[0]
+
         entityRect = self.rect()
         for rect in tilemap.physicsRectsAround(self.pos):
             if entityRect.colliderect(rect):
@@ -34,8 +35,7 @@ class physicsEntity:
                     self.collisions['left'] = True
 
         # HANDLE VERTICAL MOVEMENT
-        self.pos[1] += frameMovement[1]
-        entityRect = self.rect()
+
         for rect in tilemap.physicsRectsAround(self.pos):
             if entityRect.colliderect(rect):
                 if frameMovement[1] > 0:
@@ -49,6 +49,9 @@ class physicsEntity:
         # noinspection PyTypeChecker
         self.velocity[1] = min(5, self.velocity[1] + 0.1)  # take the lower of two numbers and apply it to velocity.
         # Ensures velocity cannot go over 5
+
+        self.pos[0] += frameMovement[0]
+        self.pos[1] += frameMovement[1]
 
         if self.collisions['down'] or self.collisions['up']:
             self.velocity[1] = 0
