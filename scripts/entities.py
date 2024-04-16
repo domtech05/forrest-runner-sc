@@ -18,24 +18,22 @@ class physicsEntity:
 
     def update(self, tilemap, movement=(0, 0)):
         
+        entityRect = self.rect()
 
         frameMovement = (movement[0] + self.velocity[0], movement[1] + self.velocity[1])
 
         # HANDLE HORIZONTAL MOVEMENT
-
-        entityRect = self.rect()
         for rect in tilemap.physicsRectsAround(self.pos):
             if entityRect.colliderect(rect):
                 if frameMovement[0] > 0:
                     self.pos[0] = rect.left
                     self.collisions['right'] = True
-                    self.velocity[1] = 0
-                if frameMovement[0] < 0:
+                elif frameMovement[0] < 0:
                     self.pos[0] = rect.right
                     self.collisions['left'] = True
+                self.velocity[0] = 0
 
         # HANDLE VERTICAL MOVEMENT
-
         for rect in tilemap.physicsRectsAround(self.pos):
             if entityRect.colliderect(rect):
                 if frameMovement[1] > 0:
@@ -57,6 +55,5 @@ class physicsEntity:
             self.velocity[1] = 0
 
     def render(self, screen):
-        pygame.draw.rect(screen, (255, 0, 0), (self.rect()))
         scaledCharacter = pygame.transform.scale(self.game.assets['player'], self.size)
         screen.blit(scaledCharacter, self.pos)
