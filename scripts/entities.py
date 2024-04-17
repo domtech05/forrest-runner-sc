@@ -2,52 +2,47 @@ import pygame
 
 
 class physicsEntity:
-
-    def __init__(self, game, entityType, pos, size):  # pass in all variables and assign to attributes
-        self.collisions = None
+    def __init__(self, game, e_type, pos, size):
         self.game = game
-        self.type = entityType
+        self.type = e_type
         self.pos = list(pos)
         self.size = size
         self.velocity = [0, 0]
         self.collisions = {'up': False, 'down': False, 'right': False, 'left': False}
-
+    
     def rect(self):
-        rect = pygame.Rect(self.pos[0], self.pos[1], self.size[0], self.size[1])  # create rect around player to allow collisions
-        return rect
-
+        return pygame.Rect(self.pos[0], self.pos[1], self.size[0], self.size[1])
+    
     def update(self, tilemap, movement=(0, 0)):
+        self.collisions = {'up': False, 'down': False, 'right': False, 'left': False}
+        
+        frame_movement = (movement[0] + self.velocity[0], movement[1] + self.velocity[1])
+        
+        self.pos[0] += frame_movement[0]
         entityRect = self.rect()
-        
-        frameMovement = (movement[0] + self.velocity[0], movement[1] + self.velocity[1])
-        
-        # HANDLE HORIZONTAL MOVEMENT
         for rect in tilemap.physicsRectsAround(self.pos):
             if entityRect.colliderect(rect):
-                if frameMovement[0] > 0:
-                    self.pos[0] = rect.left - self.size[0]  # Adjust position based on left side of the entity
+                if frame_movement[0] > 0:
+                    entityRect.right = rect.left
                     self.collisions['right'] = True
-                elif frameMovement[0] < 0:
-                    self.pos[0] = rect.right  # Adjust position based on right side of the entity
+                if frame_movement[0] < 0:
+                    entityRect.left = rect.right
                     self.collisions['left'] = True
-                self.velocity[0] = 0
+                self.pos[0] = entityRect.x
         
-        # HANDLE VERTICAL MOVEMENT
+        self.pos[1] += frame_movement[1]
+        entityRect = self.rect()
         for rect in tilemap.physicsRectsAround(self.pos):
             if entityRect.colliderect(rect):
-                if frameMovement[1] > 0:
-                    self.pos[1] = rect.top - self.size[1]  # Adjust position based on top of the entity
+                if frame_movement[1] > 0:
+                    entityRect.bottom = rect.top
                     self.collisions['down'] = True
-                elif frameMovement[1] < 0:
-                    self.pos[1] = rect.bottom  # Adjust position based on bottom of the entity
+                if frame_movement[1] < 0:
+                    entityRect.top = rect.bottom
                     self.collisions['up'] = True
-                self.velocity[1] = 0
+                self.pos[1] = entityRect.y
         
-        
-        self.velocity[1] = min(5, self.velocity[1] + 0.1)  # Limit velocity
-        
-        self.pos[0] += frameMovement[0]
-        self.pos[1] += frameMovement[1]
+        self.velocity[1] = min(5, self.velocity[1] + 0.1)
         
         if self.collisions['down'] or self.collisions['up']:
             self.velocity[1] = 0
