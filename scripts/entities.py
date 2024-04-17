@@ -2,9 +2,9 @@ import pygame
 
 
 class physicsEntity:
-    def __init__(self, game, e_type, pos, size):
+    def __init__(self, game, entityType, pos, size):
         self.game = game
-        self.type = e_type
+        self.type = entityType
         self.pos = list(pos)
         self.size = size
         self.velocity = [0, 0]
