@@ -33,11 +33,11 @@ class tilemap:
                                 self.tileSize))
         return rects
     
-    def render(self, surf):
+    def render(self, screen):
         for tile in self.offgridTiles:
-            surf.blit(self.game.assets[tile['type']][tile['variant']], tile['pos'])
+            screen.blit(self.game.assets[tile['type']][tile['variant']], tile['pos'])
         
         for loc in self.tilemap:
             tile = self.tilemap[loc]
-            surf.blit(self.game.assets[tile['type']][tile['variant']],
+            screen.blit(self.game.assets[tile['type']][tile['variant']],
                       (tile['pos'][0] * self.tileSize, tile['pos'][1] * self.tileSize))
