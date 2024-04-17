@@ -54,4 +54,3 @@ class level1Class:
             self.screen.blit(pygame.transform.scale(self.screen, self.screen.get_size()), (0, 0))
             pygame.display.update()
             self.clock.tick(60)
-            
