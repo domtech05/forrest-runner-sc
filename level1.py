@@ -20,7 +20,7 @@ class level1Class:
             'player': loadImage('entities/character-idle.png')  # import all images needed for the level to be rendered
         }
         
-        self.player = physicsEntity(self, 'player', (50, 50), (19, 24))
+        self.player = physicsEntity(self, 'player', (50, 50), (8, 15))
         
         self.tilemap = tilemap(self)
     
