@@ -16,21 +16,21 @@ from level1 import level1Class
 class mainMenu:
     def __init__(self):
         pygame.init()
-        self.screenWidth = 1920
-        self.screenHeight = 1080
+        self.screenWidth = 640
+        self.screenHeight = 480
         self.screen = pygame.display.set_mode((self.screenWidth, self.screenHeight))
         pygame.display.set_caption('Forrest Runner')
         self.clock = pygame.time.Clock()
         
-        self.titleFont = pygame.font.Font("FONTS/CabinSketch-Bold.ttf", 100)
-        self.taglineFont = pygame.font.Font("FONTS/CabinSketch-Regular.ttf", 50)
+        self.titleFont = pygame.font.Font("FONTS/CabinSketch-Bold.ttf", 60)
+        self.taglineFont = pygame.font.Font("FONTS/CabinSketch-Regular.ttf", 40)
         self.backgroundImage = pygame.image.load("ASSETS/Images/background.jpg")
         self.backgroundImage = pygame.transform.scale(self.backgroundImage, (self.screenWidth, self.screenHeight))
         
         self.buttons = []
     
     def add_button(self, text, x, y, width, height, action=None):
-        buttonFont = pygame.font.Font("FONTS/Pangolin-Regular.ttf", 55)
+        buttonFont = pygame.font.Font("FONTS/Pangolin-Regular.ttf", 25)
         button = self.Button(text, x, y, width, height, buttonFont, "ASSETS/button.png", action)
         self.buttons.append(button)
     
@@ -56,9 +56,9 @@ class mainMenu:
     def draw(self):
         self.screen.blit(self.backgroundImage, (0, 0))
         self.screen.blit(self.taglineFont.render("Welcome to", True, (0, 0, 0)),
-                         (self.screenWidth // 2 - self.taglineFont.size("Welcome to")[0] // 2, 290))
+                         (self.screenWidth // 2 - self.taglineFont.size("Welcome to")[0] // 2, 110))
         self.screen.blit(self.titleFont.render("Forest runner", True, (0, 0, 0)),
-                         (self.screenWidth // 2 - self.titleFont.size("Forest runner")[0] // 2, 320))
+                         (self.screenWidth // 2 - self.titleFont.size("Forest runner")[0] // 2, 140))
         
         for button in self.buttons:
             button.draw(self.screen)
@@ -92,9 +92,9 @@ class mainMenu:
 
 if __name__ == "__main__":
     mainMenu = mainMenu()
-    mainMenu.add_button("Start", (mainMenu.screenWidth - 350) // 2, (mainMenu.screenHeight // 2) - 75, 350, 75,
+    mainMenu.add_button("Start", (mainMenu.screenWidth - 150) // 2, (mainMenu.screenHeight // 2) - 30, 150, 40,
                         action=lambda: mainMenu.runLevel())
-    mainMenu.add_button("Settings", (mainMenu.screenWidth - 350) // 2, (mainMenu.screenHeight // 2) + 30, 350, 75)
-    mainMenu.add_button("Exit", (mainMenu.screenWidth - 350) // 2, (mainMenu.screenHeight // 2) + 135, 350, 75, action=exit)
+    mainMenu.add_button("Settings", (mainMenu.screenWidth - 150) // 2, (mainMenu.screenHeight // 2) + 20, 150, 40)
+    mainMenu.add_button("Exit", (mainMenu.screenWidth - 150) // 2, (mainMenu.screenHeight // 2) + 70, 150, 40, action=exit)
     
     mainMenu.run()
