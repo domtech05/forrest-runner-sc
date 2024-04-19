@@ -23,15 +23,21 @@ class level1Class:
         self.player = physicsEntity(self, 'player', (50, 50), (8, 15))
         
         self.tilemap = tilemap(self)
+        
+        self.scroll = [0, 0]
     
     def run(self):
         while True:
             self.screen.fill((14, 219, 248))
             
-            self.tilemap.render(self.screen)
+            # Setup scrolling variables based on player position
+            self.scroll[0] += (self.player.rect().centerx - self.screen.get_width() / 2 - self.scroll[0]) / 30
+            self.scroll[1] += (self.player.rect().centery - self.screen.get_height() / 2 - self.scroll[1]) / 30
             
+            # Render tilemap and player, passing in the offset values as calculated above
+            self.tilemap.render(self.screen, offset=self.scroll)
             self.player.update(self.tilemap, (self.movement[1] - self.movement[0], 0))
-            self.player.render(self.screen)
+            self.player.render(self.screen, offset=self.scroll)
             
             for event in pygame.event.get():
                 if event.type == pygame.QUIT:

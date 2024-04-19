@@ -47,6 +47,6 @@ class physicsEntity:
         if self.collisions['down'] or self.collisions['up']:
             self.velocity[1] = 0
             
-    def render(self, screen):
+    def render(self, screen, offset=(0,0)):
         scaledCharacter = pygame.transform.scale(self.game.assets['player'], self.size)
-        screen.blit(scaledCharacter, self.pos)
+        screen.blit(scaledCharacter, (self.pos[0] - offset[0], self.pos[1] - offset[1]))
