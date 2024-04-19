@@ -34,10 +34,12 @@ class level1Class:
             self.scroll[0] += (self.player.rect().centerx - self.screen.get_width() / 2 - self.scroll[0]) / 30
             self.scroll[1] += (self.player.rect().centery - self.screen.get_height() / 2 - self.scroll[1]) / 30
             
+            renderScroll = (int(self.scroll[0]), int(self.scroll[1]))
+            
             # Render tilemap and player, passing in the offset values as calculated above
-            self.tilemap.render(self.screen, offset=self.scroll)
+            self.tilemap.render(self.screen, offset=renderScroll)
             self.player.update(self.tilemap, (self.movement[1] - self.movement[0], 0))
-            self.player.render(self.screen, offset=self.scroll)
+            self.player.render(self.screen, offset=renderScroll)
             
             for event in pygame.event.get():
                 if event.type == pygame.QUIT:
