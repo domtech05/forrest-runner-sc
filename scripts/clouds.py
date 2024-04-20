@@ -13,7 +13,7 @@ class cloud:
         
     def render (self, screen, offset=(0, 0)):
         renderPos = (self.pos[0] - offset[0] * self.depth, self.pos[1] - offset[1] * self.depth)  # Create variable to assign a position to render the clouds at based on the camera offset
-        screen.blit(self.img, (renderPos[0]) % (screen.get_width() + self.img.get_width()) - self.img.get_width(), renderPos[1] % (screen.get_height() + self.img.get_height()) - self.img.get_height())
+        screen.blit(self.img, (renderPos[0] % (screen.get_width() + self.img.get_width()) - self.img.get_width(), renderPos[1] % (screen.get_height() + self.img.get_height()) - self.img.get_height()))
         # render clouds to screen based on screen and image sizes
     
 
@@ -34,3 +34,4 @@ class clouds:  # class for cloud images and functions
     def render(self, screen, offset=(0, 0)):
         for cloud in self.clouds:
             cloud.render(screen, offset=offset)
+            

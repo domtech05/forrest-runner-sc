@@ -9,6 +9,7 @@ class physicsEntity:
         self.size = size
         self.velocity = [0, 0]
         self.collisions = {'up': False, 'down': False, 'right': False, 'left': False}
+        self.playerImage = pygame.image.load("ASSETS/Images/entities/character-idle.png")
     
     def rect(self):
         return pygame.Rect(self.pos[0], self.pos[1], self.size[0], self.size[1])
@@ -48,5 +49,5 @@ class physicsEntity:
             self.velocity[1] = 0
             
     def render(self, screen, offset=(0,0)):
-        scaledCharacter = pygame.transform.scale(self.game.assets['player'], self.size)
+        scaledCharacter = pygame.transform.scale(self.playerImage, self.size)
         screen.blit(scaledCharacter, (self.pos[0] - offset[0], self.pos[1] - offset[1]))

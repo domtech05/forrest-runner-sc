@@ -18,8 +18,7 @@ class level1Class:
             'grass': bulkImageLoad('tiles/grass'),
             'largeDecor': bulkImageLoad('tiles/largeDecor'),
             'stone': bulkImageLoad('tiles/stone'),
-            'player': loadImage('entities/character-idle.png'),
-            'clouds': loadImage('clouds'),  # import all images needed for the level to be rendered
+            'clouds': bulkImageLoad('clouds'),  # import all images needed for the level to be rendered
         }
         
         self.clouds = clouds(self.assets['clouds'], count=16)
