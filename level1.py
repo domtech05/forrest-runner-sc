@@ -2,6 +2,7 @@ import pygame
 from scripts.entities import physicsEntity
 from scripts.utils import loadImage, bulkImageLoad
 from scripts.tilemap1 import tilemap
+from scripts.clouds import clouds
 
 
 # create class to run level 1
@@ -17,8 +18,11 @@ class level1Class:
             'grass': bulkImageLoad('tiles/grass'),
             'largeDecor': bulkImageLoad('tiles/largeDecor'),
             'stone': bulkImageLoad('tiles/stone'),
-            'player': loadImage('entities/character-idle.png')  # import all images needed for the level to be rendered
+            'player': loadImage('entities/character-idle.png'),
+            'clouds': loadImage('clouds'),  # import all images needed for the level to be rendered
         }
+        
+        self.clouds = clouds(self.assets['clouds'], count=16)
         
         self.player = physicsEntity(self, 'player', (50, 50), (8, 15))
         
@@ -35,6 +39,9 @@ class level1Class:
             self.scroll[1] += (self.player.rect().centery - self.screen.get_height() / 2 - self.scroll[1]) / 30
             
             renderScroll = (int(self.scroll[0]), int(self.scroll[1]))
+            
+            self.clouds.update()
+            self.clouds.render(self.screen, offset=renderScroll)
             
             # Render tilemap and player, passing in the offset values as calculated above
             self.tilemap.render(self.screen, offset=renderScroll)
