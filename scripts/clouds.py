@@ -34,4 +34,3 @@ class clouds:  # class for cloud images and functions
     def render(self, screen, offset=(0, 0)):
         for cloud in self.clouds:
             cloud.render(screen, offset=offset)
-            
