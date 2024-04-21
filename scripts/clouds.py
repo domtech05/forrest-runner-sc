@@ -22,7 +22,7 @@ class clouds:  # class for cloud images and functions
         self.clouds = []  # array for clouds
         
         for i in range(count):
-            self.clouds.append(cloud((random.random() * 99999, random.random() * 99999), random.choice(cloudImages), random.random() * 0.05 + 0.05, random.random() * 0.6 + 0.2))
+            self.clouds.append(cloud((random.random() * 99999, random.random() * 99999), random.choice(cloudImages), random.random() * 0.15 + 0.15, random.random() * 0.6 + 0.2))
             # add clouds to array randomly
             
         self.clouds.sort(key=lambda x: x.depth)

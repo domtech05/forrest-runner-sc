@@ -21,7 +21,7 @@ class level1Class:
             'clouds': bulkImageLoad('clouds')  # import all images needed for the level to be rendered
         }
         
-        self.clouds = clouds(self.assets['clouds'], count=16)
+        self.clouds = clouds(self.assets['clouds'], count=35)
         
         self.player = physicsEntity(self, 'player', (50, 50), (8, 15))
         
