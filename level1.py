@@ -26,6 +26,7 @@ class level1Class:
         self.player = physicsEntity(self, 'player', (50, 50), (8, 15))
         
         self.tilemap = tilemap(self)
+        self.tilemap.load('map.json')
         
         self.scroll = [0, 0]
     
