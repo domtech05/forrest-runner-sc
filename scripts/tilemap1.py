@@ -47,7 +47,7 @@ class tilemap:
         f.close()
         
         self.tilemap = mapData['tilemap']
-        self.tileSize = mapData['tile_size']
+        self.tileSize = mapData['tileSize']
         self.offgridTiles = mapData['offgrid']
         
         
