@@ -1,5 +1,5 @@
 import pygame
-from scripts.entities import physicsEntity
+from scripts.entities import physicsEntity, player
 from scripts.utils import loadImage, bulkImageLoad
 from scripts.tilemap1 import tilemap
 from scripts.clouds import clouds
@@ -23,7 +23,7 @@ class level1Class:
         
         self.clouds = clouds(self.assets['clouds'], count=35)
         
-        self.player = physicsEntity(self, 'player', (50, 50), (8, 15))
+        self.player = player(self, (50, 50), (8, 15))
         
         self.tilemap = tilemap(self)
         self.tilemap.load('map.json')
@@ -59,7 +59,7 @@ class level1Class:
                     if event.key == pygame.K_RIGHT:
                         self.movement[1] = True
                     if event.key == pygame.K_UP:
-                        self.player.velocity[1] = -3
+                        self.player.jump()
                 if event.type == pygame.KEYUP:
                     if event.key == pygame.K_LEFT:
                         self.movement[0] = False
