@@ -65,7 +65,7 @@ class player(physicsEntity):
             self.jumps = 1
 
         if self.pos[1] > 250:
-            os.system('python gameOver.py')
+            os.system('py gameOver.py')
             exit()
 
     def render(self, screen, offset=(0, 0)):

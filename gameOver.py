@@ -80,7 +80,7 @@ class gameOver():
             screen.blit(textSurface, textRect)
 
     def runMenu(self):  # run level 1 when start is pressed
-        os.system('python main_menu.py')
+        os.system('py main_menu.py')
         pygame.quit()
         exit()
 
