@@ -9,7 +9,6 @@ class physicsEntity:
         self.size = size
         self.velocity = [0, 0]
         self.collisions = {'up': False, 'down': False, 'right': False, 'left': False}
-        self.playerImage = pygame.image.load("ASSETS/Images/entities/character-idle.png")
 
     def rect(self):
         return pygame.Rect(self.pos[0], self.pos[1], self.size[0], self.size[1])
@@ -48,13 +47,12 @@ class physicsEntity:
         if self.collisions['down'] or self.collisions['up']:
             self.velocity[1] = 0
 
-    def render(self, screen, offset=(0, 0)):
-        scaledCharacter = pygame.transform.scale(self.playerImage, self.size)
-        screen.blit(scaledCharacter, (self.pos[0] - offset[0], self.pos[1] - offset[1]))
+
 
 
 class player(physicsEntity):
     def __init__(self, game, pos, size):
+        self.playerImage = pygame.image.load("ASSETS/Images/entities/character-idle.png")
         super().__init__(game, 'player', pos, size)
         self.jumps = 1
 
@@ -65,6 +63,13 @@ class player(physicsEntity):
         if self.collisions['down']:  # if player is colliding with a tile below, allow one jump to be made (acts to reset jump counter)
             self.jumps = 1
 
+        if self.pos[1] > 250:
+
+
+    def render(self, screen, offset=(0, 0)):
+        scaledCharacter = pygame.transform.scale(self.playerImage, self.size)
+        screen.blit(scaledCharacter, (self.pos[0] - offset[0], self.pos[1] - offset[1]))
+
     def jump(self):
         if self.jumps:  # if jumps = 0 this goes false so loop doesn't run, hence character cannot jump
             self.velocity[1] = -3  # edit velocity to move player up and 'jump'
@@ -74,6 +79,12 @@ class player(physicsEntity):
 class enemy(physicsEntity):
     def __init__(self, game, pos, size):
         super().__init__(game, 'enemy', pos, size)
+        self.enemyImage = pygame.image.load('ASSETS/Images/entities/enemyCharacter.png')
+        self.movement = (0,0)
 
-    def update(self, tilemap, movement=(0, 0)):
-        super()
+    def update(self, tilemap):
+        super().update(tilemap, movement=self.movement)
+
+    def render(self, screen, offset=(0, 0)):
+        scaledCharacter = pygame.transform.scale(self.enemyImage, self.size)
+        screen.blit(scaledCharacter, (self.pos[0] - offset[0], self.pos[1] - offset[1]))
