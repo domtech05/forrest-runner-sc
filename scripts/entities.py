@@ -1,4 +1,5 @@
 import pygame
+import os
 
 
 class physicsEntity:
@@ -64,7 +65,8 @@ class player(physicsEntity):
             self.jumps = 1
 
         if self.pos[1] > 250:
-
+            os.system('python gameOver.py')
+            exit()
 
     def render(self, screen, offset=(0, 0)):
         scaledCharacter = pygame.transform.scale(self.playerImage, self.size)
