@@ -1,5 +1,5 @@
 import pygame
-from scripts.entities import physicsEntity, player, enemy
+from scripts.entities import physicsEntity, player  # , enemy
 from scripts.utils import loadImage, bulkImageLoad
 from scripts.tilemap1 import tilemap
 from scripts.clouds import clouds
@@ -24,7 +24,7 @@ class level1Class:
         self.clouds = clouds(self.assets['clouds'], count=35)
         
         self.player = player(self, (50, 50), (8, 15))
-        self.enemy = enemy(self, (249, 50), (8, 15))
+        #self.enemy = enemy(self, (249, 50), (8, 15))
         
         self.tilemap = tilemap(self)
         self.tilemap.load('map.json')
@@ -44,8 +44,8 @@ class level1Class:
             self.clouds.update()
             self.clouds.render(self.screen, offset=renderScroll)
 
-            self.enemy.update(self.tilemap)
-            self.enemy.render(self.screen, offset=renderScroll)
+            # self.enemy.update(self.tilemap)
+            # self.enemy.render(self.screen, offset=renderScroll)
             
             # Render tilemap and player, passing in the offset values as calculated above
             self.tilemap.render(self.screen, offset=renderScroll)

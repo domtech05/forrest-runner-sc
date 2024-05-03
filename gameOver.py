@@ -81,7 +81,6 @@ class gameOver():
 
     def runMenu(self):  # run level 1 when start is pressed
         os.system('py main_menu.py')
-        pygame.quit()
         exit()
 
 

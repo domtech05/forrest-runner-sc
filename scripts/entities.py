@@ -78,7 +78,7 @@ class player(physicsEntity):
             self.jumps -= 1  # take one from jump limit
 
 
-class enemy(physicsEntity):
+'''class enemy(physicsEntity):
     def __init__(self, game, pos, size):
         super().__init__(game, 'enemy', pos, size)
         self.enemyImage = pygame.image.load('ASSETS/Images/entities/enemyCharacter.png')
@@ -89,4 +89,4 @@ class enemy(physicsEntity):
 
     def render(self, screen, offset=(0, 0)):
         scaledCharacter = pygame.transform.scale(self.enemyImage, self.size)
-        screen.blit(scaledCharacter, (self.pos[0] - offset[0], self.pos[1] - offset[1]))
+        screen.blit(scaledCharacter, (self.pos[0] - offset[0], self.pos[1] - offset[1]))'''
